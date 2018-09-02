@@ -24,7 +24,7 @@ public class BulletController : MonoBehaviour {
         Vector3 dir = new Vector3 (direction.x, direction.y, 0);
         this.transform.position += -dir * bulletSpeed * Time.deltaTime;
 
-        print(dir);
+        
     }
 
     

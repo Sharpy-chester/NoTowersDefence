@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
 
@@ -10,18 +11,31 @@ public class Enemy : MonoBehaviour {
     public int curPathInt;
     public float health;
     public float maxHealth;
-    
+    public Image hpBar;
+    MainController mainController;
+    public GameObject mainControllerObj;
+    int damage = 1;
 
 	
 	void Start () {
-        path = GameObject.FindGameObjectsWithTag("Path");
 
+        
+        
         curPathInt = path.Length - 1;
         curPath = path[curPathInt];
+        
 	}
-	
-	
-	void Update () {
+
+    void Awake()
+    {
+        health = maxHealth;
+        mainControllerObj = GameObject.Find("MainController");
+        mainController = mainControllerObj.GetComponent<MainController>();
+        
+    }
+
+
+    void Update () {
         curPath = path[curPathInt];
         if (this.transform.position == curPath.transform.position)
         {
@@ -31,11 +45,25 @@ public class Enemy : MonoBehaviour {
         Vector3 thisPos = this.transform.position;
         this.transform.position = Vector3.MoveTowards(this.transform.position, curPathPos, speed * Time.deltaTime);
 
-        if (curPathInt > (path.Length -1))
+        if (curPathInt < (0))
+        {
+
+            mainController.hp--;
+            Destroy(this.gameObject);
+            
+        }
+        if (health <= 0)
         {
             Destroy(this.gameObject);
         }
+        HealthBar();
 	}
+
+    void HealthBar()
+    {
+        float ratio = health / maxHealth;
+        hpBar.rectTransform.localScale = new Vector3(ratio, 1, 1);
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
