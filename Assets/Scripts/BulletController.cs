@@ -17,6 +17,7 @@ public class BulletController : MonoBehaviour {
         float directionx = (this.transform.position.x - target.x);
         float directiony = (this.transform.position.y - target.y);
         direction = new Vector2(directionx, directiony).normalized;
+        Destroy(this.gameObject, 10);
     }
 
 

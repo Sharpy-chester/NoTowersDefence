@@ -20,17 +20,50 @@ public class Upgrades : MonoBehaviour {
     public GameObject[] projectile;
     public int spec = 0;
     public int proj = 0;
+    public Text creditText;
+    public Text mainCreditText;
+    public GameObject prices;
 
+    //make it so that right click does special and left click does projectile
 
+    void Start()
+    {
+        prices.SetActive(false);
+        
+    }
+    void Awake()
+    {
+        specials = GameObject.FindGameObjectsWithTag("Special");
+        projectile = GameObject.FindGameObjectsWithTag("Projectiles");
+        foreach (GameObject i in specials)
+        {
+            i.gameObject.SetActive(false);
+        }
+        foreach (GameObject i in projectile)
+        {
+            i.gameObject.SetActive(false);
+        }
+    }
 
     void Update()
     {
+        creditText.text = mainCreditText.text;
         if (chosen)
         {
-            specials = GameObject.FindGameObjectsWithTag("Special");
-            projectile = GameObject.FindGameObjectsWithTag("Projectiles");
+            
+
+            foreach (GameObject i in specials)
+            {
+                i.gameObject.SetActive(true);
+            }
+            foreach (GameObject i in projectile)
+            {
+                i.gameObject.SetActive(true);
+            }
+            prices.SetActive(true);
             chosen = false;
         }
+        
 
         for (int i = 0; i < specials.Length; i++)
         {

@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 114449538193722122}
   - component: {fileID: 58814813408749798}
   m_Layer: 0
-  m_Name: Enemy
-  m_TagString: Untagged
+  m_Name: CreditsEnemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f636677e44ed645af3c1db65b1625e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1.5
   path:
   - {fileID: 1212807674059088, guid: e06092b34af37c44fac5f2f9eda3231f, type: 2}
   - {fileID: 1281981300062010, guid: e06092b34af37c44fac5f2f9eda3231f, type: 2}
@@ -135,11 +135,15 @@ MonoBehaviour:
   - {fileID: 1845364459739986, guid: e06092b34af37c44fac5f2f9eda3231f, type: 2}
   curPath: {fileID: 0}
   curPathInt: 0
-  health: 20
-  maxHealth: 20
+  health: 80
+  maxHealth: 80
   hpBar: {fileID: 114903523560579738}
   mainControllerObj: {fileID: 1739678446422438, guid: 3120f747c835af34a96eaf406da7b43f,
     type: 2}
+  damage: 1
+  credits: 10
+  upgradeObj: {fileID: 0}
+  upgrades: {fileID: 0}
 --- !u!114 &114640593534858460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,7 +270,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 5cf99a69a01354d42abb1c9be7c86af9, type: 3}
+  m_Sprite: {fileID: 21300008, guid: 5cf99a69a01354d42abb1c9be7c86af9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

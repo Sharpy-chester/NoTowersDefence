@@ -66,3 +66,8 @@ MonoBehaviour:
   creditText: {fileID: 0}
   credits: 0
   shop: {fileID: 0}
+  enemyTypes:
+  - {fileID: 1048234685215124, guid: 41a926456959c7d42a430c3290f64dd3, type: 2}
+  - {fileID: 1048234685215124, guid: 0904bdcd122cf454a9fe3df589977688, type: 2}
+  - {fileID: 1048234685215124, guid: 80fef8ad8c8522342851516f7648b2c9, type: 2}
+  - {fileID: 1048234685215124, guid: de8547e42cde8a54babe56134fd9e294, type: 2}

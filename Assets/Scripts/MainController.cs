@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainController : MonoBehaviour {
 
@@ -11,7 +12,7 @@ public class MainController : MonoBehaviour {
     public int enemyNum;
     public GameObject startPath;
     public float wait;
-    float maxWait = 2;
+    public float maxWait = 2;
     public Text waveText;
     public List<GameObject> enemies;
     public float waveWait;
@@ -21,13 +22,15 @@ public class MainController : MonoBehaviour {
     public Text creditText;
     public int credits;
     public GameObject shop;
+    public GameObject[] enemyTypes;
+    int waveType = 0;
     
 
     void Start () {
         maxEnemiesPerWave = 5;
         enemyNum = 0;
         hp = 20;
-        maxWait = 2;
+        maxWait = .5f;
         wave = 0;
         waveWait = 0;
         wait = maxWait;
@@ -41,9 +44,10 @@ public class MainController : MonoBehaviour {
         if (wait >= maxWait)
         {
             wait = 0f;
+
             if (enemyNum + 1 <= maxEnemiesPerWave)
             {
-                enemies.Add(Instantiate(enemy, startPath.transform.position, this.transform.rotation));
+                enemies.Add(Instantiate(enemyTypes[waveType], startPath.transform.position, this.transform.rotation));
                 enemyNum++;
             }
             
@@ -61,18 +65,39 @@ public class MainController : MonoBehaviour {
 
         waveText.text = "Wave: " + (wave + 1);
         hpText.text = "Health " + hp;
+        creditText.text = "Credits: " + credits;
 
         if (enemies.Count == 0 && enemyNum == maxEnemiesPerWave)
         {
             waveWait += Time.deltaTime;
             if (waveWait >= maxWaveWait)
             {
-                wave++;
+                waveType = Random.Range(0, 3);
+                
+                ++wave;
                 enemyNum = 0;
                 waveWait = 0;
-                maxEnemiesPerWave++;
                 
+                if (waveType == 0)
+                {
+                    maxEnemiesPerWave = 5 + wave;
+                    maxWait = .5f;
+                }
+                else if (waveType == 1)
+                {
+                    maxEnemiesPerWave = 8 + (wave * 2);
+                    maxWait = .3f;
+                }
+                else if (waveType == 2)
+                {
+                    maxEnemiesPerWave = 2 + (wave / 2);
+                    maxWait = 2f;
+                }
             }
+        }
+        if (hp <= 0)
+        {
+            SceneManager.LoadScene("MainScene");
         }
     }
 
